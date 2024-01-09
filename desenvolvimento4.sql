@@ -1,0 +1,17 @@
+
+CREATE TABLE CLIENTES (
+    ID SERIAL PRIMARY KEY,
+    DIA_CADASTRO DATE,
+    NOME VARCHAR(50)
+)
+
+CREATE FUNCTION clientes_cadastrados_no_dia (dia date)
+    RETURN NUMBER 
+    IS
+    BEGIN
+    NUMERO_DE_CLIENTES = 0
+    FOR DIA_CADASTRO IN CLIENTES:
+        IF DIA_CADASTRO = dia
+            NUMERO_DE_CLIENTES += 1
+    RETURN (NUMERO_DE_CLIENTES) 
+    END clientes_cadastrados_no_dia;
